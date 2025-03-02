@@ -1,29 +1,40 @@
-# Film Review Sentiment Analysis
+# Film Junky Union - Automated Movie Review Classification
 
-## Project Description
+## Project Overview
 
-Film Junky Union, a cutting-edge community for classic movie enthusiasts, is developing a system to filter and categorize movie reviews. Your objective is to train a model to automatically detect negative reviews. To achieve this, you will use a labeled IMDB movie review dataset to build a model that classifies reviews as positive and negative. It should achieve an F1 score of at least 0.85.
+Film Junky Union, a new and innovative community for classic film enthusiasts, aims to develop a system for filtering and categorizing movie reviews. This project focuses on training a model to automatically detect negative reviews using an IMDB movie review dataset. The goal is to build a robust classifier that accurately distinguishes between positive and negative reviews, enhancing the user experience on the platform.
 
-## Project Instructions
+## Methodology
 
-1.  Load the data.
-2.  Preprocess the data, if necessary.
-3.  Perform exploratory data analysis and draw your conclusion about class imbalance.
-4.  Perform data preprocessing for modeling.
-5.  Train at least three different models on the training dataset.
-6.  Test the models on the test dataset.
-7.  Write some reviews and classify them with all the models.
-8.  Find the differences between the test results of the models in the previous two points. Try to explain them.
-9.  Show your findings.
+### Data Preprocessing
 
-## Data Description
+* **Data Loading:** IMDB movie reviews were loaded from a TSV file into a Pandas DataFrame.
+* **Text Preprocessing:**
+    * Lowercasing: Converted all text to lowercase.
+    * Tokenization: Split text into individual words or tokens.
+    * Lemmatization: Reduced words to their base or dictionary form.
+    * Stop Words Removal: Eliminated common words that do not contribute significantly to the meaning.
+* **Feature Engineering:**
+    * TF-IDF Vectorization: Transformed textual data into numerical features using Term Frequency-Inverse Document Frequency.
 
-The data is stored in the file `imdb_reviews.tsv`. 
+### Model Selection
 
-The data was provided by Andrew L. Maas, Raymond E. Daly, Peter T. Pham, Dan Huang, Andrew Y. Ng, and Christopher Potts. (2011). Learning Word Vectors for Sentiment Analysis. The 49th Annual Meeting of the Association for Computational Linguistics (ACL 2011).
+* **Baseline Models:**
+    * Logistic Regression
+    * LightGBM
+    * Dummy Classifier (for baseline comparison)
+* **Advanced Models:**
+    * Neural Network (TensorFlow/Keras)
+    * BERT (Bidirectional Encoder Representations from Transformers) using the `transformers` library.
 
-Here are the selected fields described:
+### Training and Evaluation
 
-* `review`: the text of the review
-* `pos`: the target, '0' for negative and '1' for positive
-* `ds_part`: 'train'/'test' for the train/test part of the dataset, respectively
+* **Data Splitting:** The dataset was divided into training and testing subsets.
+* **Cross-Validation:** Stratified KFold cross-validation was employed to ensure consistent model performance across different data segments.
+* **Hyperparameter Tuning:** Grid search was used to optimize model hyperparameters.
+* **Evaluation Metrics:**
+    * Accuracy
+    * Precision
+    * Recall
+    * F1 Score
+    * AUC-ROC
